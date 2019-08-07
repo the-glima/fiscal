@@ -1,0 +1,28 @@
+{
+  "name" : "fiscal",
+  "version" : "0.1.0",
+  "description" : "A Chrome Extension for checking PRs matches.",
+  "license": "MIT",
+  "repository": "https://dev.azure.com/payvision/B-Ops/_git/",
+  "scripts": {
+    "build": "rm -rf dist && tsc -b",
+    "format": "prettier --write \"{app,test}/**/*.ts\"",
+    "lint": "tslint -p . -t stylish",
+    "prepack": "yarn build",
+    "test": "jest --runInBand",
+    "version": "auto-changelog -p && git add CHANGELOG.md"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.1.0",
+    "@commitlint/config-conventional": "^8.1.0",
+    "@types/chai": "^4.1.7",
+    "@types/jest": "^24.0.15",
+    "chalk": "^2.4.2",
+    "husky": "^3.0.1",
+    "jest": "^24.8.0",
+    "prettier": "^1.18.2",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.18.0",
+    "typescript": "^3.5.3"
+  }
+}
