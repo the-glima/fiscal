@@ -1,0 +1,12 @@
+// Mixin: Card
+// --------------------------------------------
+
+@mixin card($reset: null) {
+  @if $reset {
+    background-color: transparent;
+    box-shadow: none;
+  } @else {
+    background-color: theme-color('card-bg', 'base');
+    @include shadow;
+  }
+}

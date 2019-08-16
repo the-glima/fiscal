@@ -5,7 +5,7 @@ import {paint} from './paint'
 import {findMatch} from './find-match'
 
 export const init = (container: Element[], elCollection: Element[]) => {
-  const editor = () => container.find(el => !!el)
+  const editor =  container.find(el => !!el)
   const observer = mutationObserver(paint)
 
   observer.observe(editor, settings.mutationObserver)

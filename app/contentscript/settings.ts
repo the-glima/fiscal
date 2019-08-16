@@ -1,5 +1,8 @@
 export const settings = {
-  url: ['https://dev.azure.com/payvision/B-Ops/_git/'],
+  url: [
+    'http://localhost:8080/',
+    'https://dev.azure.com/payvision/B-Ops/_git/'
+  ],
   regex: [/console\.log|(\/\/\s)/],
   mutationObserver: {
     childList: true,
