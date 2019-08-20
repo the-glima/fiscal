@@ -1,16 +1,15 @@
-export const onScroll = (container: Element[], callback: any): void => {
+import * as getters from './getters'
+import {onReady} from './on-ready'
+
+export const onScroll = (): void => {
   let timeout: number
-  const containerMatched = container.find(el => !!el)
+  const container = getters.getContainer()
 
-  if (!containerMatched) return
+  if (!container) return
 
-  containerMatched.addEventListener(
-    'scroll',
-    () => {
-      if (timeout) window.cancelAnimationFrame(timeout)
+  container.addEventListener('scroll', () => {
+    if (timeout) window.cancelAnimationFrame(timeout)
 
-      timeout = window.requestAnimationFrame(callback())
-    },
-    false
-  )
+    timeout = window.requestAnimationFrame(onReady);
+  }, false)
 }

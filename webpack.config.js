@@ -38,7 +38,7 @@ const config = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      inject: true,
+      inject: 'head',
       hash: false,
       filename: 'index.html',
       template: path.resolve(__dirname, 'index.html')

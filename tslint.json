@@ -2,6 +2,8 @@
   "rules": {
     "no-http-string": false,
     "no-console": false,
-    "no-string-literal": false
+    "no-string-literal": false,
+    "ordered-imports": true,
+    "grouped-imports": true
   }
 }
