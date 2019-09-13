@@ -1,11 +1,11 @@
 const path = require('path');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ImageMinPlugin = require('imagemin-webpack-plugin').default;
+const getHTMLPluginConfig = require('./webpack/html-plugin.webpack');
 
 const config = {
   entry: {
@@ -14,9 +14,16 @@ const config = {
       path.resolve(__dirname + '/assets/scss/main.scss'),
     ]
   },
+  output: {
+    filename: '[name].min.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
   devtool: 'inline-source-map',
   resolve: {
     extensions: [ '.tsx', '.ts', '.js' ]
+  },
+  devServer: {
+    port: 3000
   },
   module: {
     rules: [
@@ -37,20 +44,14 @@ const config = {
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      inject: 'head',
-      hash: false,
-      filename: 'index.html',
-      template: path.resolve(__dirname, 'index.html')
+    new CleanWebpackPlugin({
+      cleanStaleWebpackAssets: false,
+      verbose: true,
     }),
     new MiniCssExtractPlugin({
       filename: 'css/[name].min.css',
     }),
     new ImageMinPlugin({ test: /\.(jpg|jpeg|png|gif|svg)$/i }),
-    new CleanWebpackPlugin({
-      cleanStaleWebpackAssets: false,
-      verbose: true,
-    }),
     new CopyWebpackPlugin([
       {
         from: path.resolve(__dirname, 'assets', 'images'),
@@ -58,10 +59,7 @@ const config = {
         toType: 'dir',
       }
     ])
-  ],
-  devServer: {
-    port: 3000
-  },
+  ].concat(getHTMLPluginConfig()),
   optimization: {
     minimizer: [
       new TerserPlugin({
@@ -69,10 +67,6 @@ const config = {
       }),
       new OptimizeCssAssetsPlugin({}),
     ],
-  },
-  output: {
-    filename: '[name].min.js',
-    path: path.resolve(__dirname, 'dist'),
   }
 };
 

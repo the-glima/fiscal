@@ -18,8 +18,8 @@ export const settings = {
   elements: {
     container: ['summaryContainer'],
     codeLine: [
-      '.vc-diff-viewer .code-line', 
-      '.file-name-link'
+      '.vc-diff-viewer .code-line',
+      '.view-lines .view-line'
     ]
   }
 }
