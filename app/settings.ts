@@ -1,8 +1,5 @@
 export const settings = {
-  url: [
-    'http://localhost:3000/',
-    'https://dev.azure.com/payvision/B-Ops/_git/'
-  ],
+  url: ['http://localhost:3000/', 'https://dev.azure.com/payvision/B-Ops/_git/'],
   regex: [/console\.log|(\/\/\s)/],
   mutationObserver: {
     childList: true,
@@ -17,9 +14,6 @@ export const settings = {
   `,
   elements: {
     container: ['summaryContainer'],
-    codeLine: [
-      '.vc-diff-viewer .code-line',
-      '.view-lines .view-line'
-    ]
+    codeLine: ['.vc-diff-viewer .code-line', '.view-lines .view-line']
   }
 }

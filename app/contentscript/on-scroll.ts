@@ -7,9 +7,13 @@ export const onScroll = (): void => {
 
   if (!container) return
 
-  container.addEventListener('scroll', () => {
-    if (timeout) window.cancelAnimationFrame(timeout)
+  container.addEventListener(
+    'scroll',
+    () => {
+      if (timeout) window.cancelAnimationFrame(timeout)
 
-    timeout = window.requestAnimationFrame(onReady);
-  }, false)
+      timeout = window.requestAnimationFrame(onReady)
+    },
+    false
+  )
 }

@@ -1,4 +1,4 @@
-import { settings } from '../settings';
+import {settings} from '../settings'
 
 import {addStyle} from './add-style'
 import {findMatch} from './find-match'
