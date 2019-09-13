@@ -59,6 +59,9 @@ const config = {
       }
     ])
   ],
+  devServer: {
+    port: 3000
+  },
   optimization: {
     minimizer: [
       new TerserPlugin({

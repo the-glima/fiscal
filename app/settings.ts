@@ -1,6 +1,6 @@
 export const settings = {
   url: [
-    'http://localhost:8080/',
+    'http://localhost:3000/',
     'https://dev.azure.com/payvision/B-Ops/_git/'
   ],
   regex: [/console\.log|(\/\/\s)/],
@@ -19,7 +19,7 @@ export const settings = {
     container: ['summaryContainer'],
     codeLine: [
       '.vc-diff-viewer .code-line', 
-      '.view-lines .view-line'
+      '.file-name-link'
     ]
   }
 }
