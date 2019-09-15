@@ -2,11 +2,7 @@
 // --------------------------------------------
 
 @mixin card($reset: null) {
-  @if $reset {
-    background-color: transparent;
-    box-shadow: none;
-  } @else {
-    background-color: theme-color('card-bg', 'base');
-    @include shadow;
-  }
+  padding: $card-padding;
+  background-color: theme-color('white', 'ice');
+  @include shadow;
 }

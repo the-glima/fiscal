@@ -3,17 +3,26 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const indexHTML = {
   filename: 'index.html',
-  template: '../views/index.html'
+  template: '../views/index.html',
+  chunks: ['contentscript']
 }
 
 const filePreviewHTML = {
   filename: 'file-preview.html',
-  template: '../views/file-preview.html'
+  template: '../views/file-preview.html',
+  chunks: ['contentscript']
+}
+
+const popupHTML = {
+  filename: 'popup.html',
+  template: '../views/popup.html',
+  chunks: ['popup']
 }
 
 const viewsHTML = [
   indexHTML,
-  filePreviewHTML
+  filePreviewHTML,
+  popupHTML
 ]
 
 const getHTMLPluginConfig = () =>
@@ -21,7 +30,7 @@ const getHTMLPluginConfig = () =>
     return [...acc, new HtmlWebpackPlugin({
       inject: 'head',
       filename: curr.filename,
-      chunks: ['app'],
+      chunks: curr.chunks,
       template: path.resolve(__dirname, curr.template)
     })]
   }, [])

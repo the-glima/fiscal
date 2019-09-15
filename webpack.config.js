@@ -9,9 +9,12 @@ const getHTMLPluginConfig = require('./webpack/html-plugin.webpack');
 
 const config = {
   entry: {
-    app: [
-      path.resolve(__dirname + '/app/contentscript.ts'),
-      path.resolve(__dirname + '/assets/scss/main.scss'),
+    contentscript: [
+      path.resolve(__dirname + '/app/contentscript.ts')
+    ],
+    popup: [
+      path.resolve(__dirname + '/app/popup.ts'),
+      path.resolve(__dirname + '/assets/scss/main.scss')
     ]
   },
   output: {

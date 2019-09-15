@@ -1,0 +1,25 @@
+// Component: Form
+// --------------------------------------------
+
+.form-field { margin-bottom: 20px; }
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 700;
+  font-size: $base-font-size + 6px;
+  line-height: $base-line-height + 4px;
+}
+
+.form-input {
+  width: 100%;
+  min-height: 40px;
+  padding: 10px;
+  border: 1px solid theme-color('primary', 'base');
+  border-radius: $border-radius;
+  transition: $transition;
+}
+
+.form-textarea {
+  max-height: 100px;
+}

@@ -3,14 +3,14 @@
   "version" : "0.1.0",
   "description" : "A Chrome Extension for checking PRs matches.",
   "browser_action": {
-     "default_icon": "assets/images/icon.png",
-     "default_popup": "assets/html/popup.html"
+     "default_icon": "dist/images/icon.png",
+     "default_popup": "dist/popup.html"
   },
   "manifest_version": 2,
   "content_scripts": [
     {
       "matches": ["https://dev.azure.com/payvision/B-Ops/_git/*"],
-      "js" : ["dist/contentscript.js"]
+      "js" : ["dist/contentscript.min.js"]
     }
   ]
 }

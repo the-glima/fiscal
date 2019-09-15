@@ -19,7 +19,8 @@ $theme-colors: (
     'base': #c03f3f // avocado
   ),
   'white': (
-    'base': #fff // greyish-brown
+    'base': #fff,// greyish-brown
+    'ice': #fdfdfd
   ),
   'grey': (
     'light': #f6f7fb, // pale-grey
@@ -49,12 +50,14 @@ $theme-colors: (
 $base-font-size: 14px !default;
 $base-line-height: 18px !default;
 $font-system: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol' !default;
-$font-sans-pro: 'Source Sans Pro' !default;
-$base-font-family: $font-sans-pro, $font-system !default;
+$base-font-family: $font-system !default;
 
 // Utils
 $transition: .06s !default;
-$border-radius: 2px !default;
+$border-radius: 4px !default;
+
+// Card
+$card-padding: 30px !default;
 
 // Shadow
 $box-shadow-default: 6px 6px 2px -3px !default;
