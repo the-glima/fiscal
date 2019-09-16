@@ -1,21 +1,23 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const VIEWS_PATH = '../app/views'
+
 const indexHTML = {
   filename: 'index.html',
-  template: '../views/index.html',
+  template: `${VIEWS_PATH}/index.html`,
   chunks: ['contentscript']
 }
 
 const filePreviewHTML = {
   filename: 'file-preview.html',
-  template: '../views/file-preview.html',
+  template: `${VIEWS_PATH}/file-preview.html`,
   chunks: ['contentscript']
 }
 
 const popupHTML = {
   filename: 'popup.html',
-  template: '../views/popup.html',
+  template: `${VIEWS_PATH}/popup.html`,
   chunks: ['popup']
 }
 
