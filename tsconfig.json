@@ -7,14 +7,13 @@
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
-    "target": "es6",
+    "target": "es6"
   },
   "include": [
-    "app/*", 
-    "app/contentscript/popup.ts", 
-    "app/contentscript/contentscript.ts"
+    "app/*"
   ],
   "types" : [
-    "jest"
+    "jest",
+    "chrome"
   ]
 }

@@ -16,7 +16,8 @@ const filePreviewHTML = {
 const popupHTML = {
   filename: 'popup.html',
   template: '../views/popup.html',
-  chunks: ['popup']
+  chunks: ['popup'],
+  inject: 'body'
 }
 
 const viewsHTML = [
@@ -28,7 +29,7 @@ const viewsHTML = [
 const getHTMLPluginConfig = () =>
   viewsHTML.reduce((acc, curr) => {
     return [...acc, new HtmlWebpackPlugin({
-      inject: 'head',
+      inject: curr.inject || 'head',
       filename: curr.filename,
       chunks: curr.chunks,
       template: path.resolve(__dirname, curr.template)

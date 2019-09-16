@@ -1,1 +1,5 @@
-console.log('POPUP!')
+import {onSubmit} from './popup/form'
+
+;(() => {
+  onSubmit()
+})()

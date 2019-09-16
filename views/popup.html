@@ -14,21 +14,11 @@
         <p>I'm here to fiscalize you PR. Tell me what things you want me to look for.</p>
       </header>
 
-      <form>
-        <div class="form-field">
-          <p class="form-label">Toggle</p>
-          <label>
-            <input type="radio" name="popup-toggle"> On
-          </label>
-          <label>
-            <input type="radio" name="popup-toggle"> Off
-          </label>
-        </div>
-
+      <form action="#" id="fiscal-popup-form">
         <div class="form-field">
           <label class="form-label">Word</label>
           <p>A word to look for, it could be a phrase and you can have multiple groups. Use quotes around them and separate groups using comma:</p>
-          <textarea id="popup-word" class="form-textarea form-input" name="popup-word" rows="1" placeholder='Example: "word", "world word", "a phrase is a group of words"'></textarea>
+          <textarea name="fiscal-popup-word" class="form-textarea form-input"  rows="1" placeholder='Example: "word", "world word", "a phrase is a group of words"'></textarea>
         </div>
 
         <div class="form-field">
@@ -36,7 +26,7 @@
           <p>Do you like Regular Expressions? Who does? Anyway, add as many as you like just clicking in the add button below and entering your crazy pattern.</p>
 
           <div class="regex-wrapper">
-            <input id="popup-regex" type="text" class="form-input" placeholder="Example: console\.log">
+            <input name="fiscal-popup-regex" type="text" class="form-input" placeholder="Example: console\.log">
             <ul id="regex-list""></ul>
           </div>
         </div>

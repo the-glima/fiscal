@@ -2,9 +2,13 @@
   "name" : "fiscal",
   "version" : "0.1.0",
   "description" : "A Chrome Extension for checking PRs matches.",
+  "permissions": [
+    "<all_urls>",
+    "activeTab"
+  ],
   "browser_action": {
-     "default_icon": "dist/images/icon.png",
-     "default_popup": "dist/popup.html"
+    "default_icon": "dist/images/icon.png",
+    "default_popup": "dist/popup.html"
   },
   "manifest_version": 2,
   "content_scripts": [
