@@ -1,4 +1,6 @@
-import {onSubmit} from './popup/form'
-;(() => {
+import {onSubmit, updateForm} from './popup/form'
+
+(() => {
+  updateForm()
   onSubmit()
 })()

@@ -1,13 +1,5 @@
-const sendMessage = (data: any) =>
-  chrome.runtime.sendMessage(data, response => {
-    console.log('🍍 =======POPUP======== 🍔')
-    console.log(data)
-    console.log('🍎 ========LOGEND========= 🍦')
-
-    console.log('🍍 =======LOGSTART======== 🍔')
-    console.log(response.data)
-    console.log('🍎 ========LOGEND========= 🍦')
-  })
+import {getData, setData} from '../data/get-set.data'
+import {sendMessage} from '../data/messaging.data'
 
 const onSubmit = () => {
   const form = document.getElementById('fiscal-popup-form') as HTMLFormElement
@@ -23,8 +15,26 @@ const onSubmit = () => {
       return acc
     }, {})
 
-    sendMessage(formDataObject)
+    const popupData = {
+      name: 'popupData',
+      data: {...formDataObject}
+    }
+
+    sendMessage(popupData);
+    setData(popupData);
   })
 }
 
-export {onSubmit}
+const updateForm = () => {
+  const data = getData('popupData')
+  const word = document.getElementById('fiscal-popup-word') as HTMLFormElement
+  const regex = document.getElementById('fiscal-popup-regex') as HTMLFormElement
+
+  word.value = data['fiscal-popup-word']
+  regex.value = data['fiscal-popup-regex']
+}
+
+export {
+  onSubmit,
+  updateForm
+}

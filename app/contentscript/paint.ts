@@ -1,4 +1,5 @@
 import {settings} from '../settings'
+import {searchRegex} from '../popup/search'
 
 import {addStyle} from './add-style'
 import {findMatch} from './find-match'
@@ -12,7 +13,7 @@ export const paint = (container = getters.getContainer(), codeLine = getters.get
 
   observer.observe(container, settings.mutationObserver)
 
-  const arrayMatches = findMatch(settings.regex, codeLine)
+  const arrayMatches = findMatch(searchRegex, codeLine)
 
   addStyle(arrayMatches, 'span', settings.styles)
 }

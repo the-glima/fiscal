@@ -17,16 +17,16 @@
       <form action="#" id="fiscal-popup-form">
         <div class="form-field">
           <label class="form-label">Word</label>
-          <p>A word to look for, it could be a phrase and you can have multiple groups. Use quotes around them and separate groups using comma:</p>
-          <textarea name="fiscal-popup-word" class="form-textarea form-input"  rows="1" placeholder='Example: "word", "world word", "a phrase is a group of words"'></textarea>
+          <p>A word(s) to look for, it could be multiple words just make sure to separate them using comma:</p>
+          <textarea id="fiscal-popup-word" name="fiscal-popup-word" class="form-textarea form-input"  rows="1" placeholder='Example: only, console.log, Foo-bar'></textarea>
         </div>
 
         <div class="form-field">
           <label class="form-label">Regex</label>
-          <p>Do you like Regular Expressions? Who does? Anyway, add as many as you like just clicking in the add button below and entering your crazy pattern.</p>
+          <p>Do you like Regular Expressions? Who doesn't? Don't get to crazy:</p>
 
           <div class="regex-wrapper">
-            <input name="fiscal-popup-regex" type="text" class="form-input" placeholder="Example: console\.log">
+            <input id="fiscal-popup-regex" name="fiscal-popup-regex" type="text" class="form-input" placeholder="Example: \/\/">
             <ul id="regex-list""></ul>
           </div>
         </div>
