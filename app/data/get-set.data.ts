@@ -1,5 +1,4 @@
 import {StorageData} from '../models/storage-data.model'
-import {isProd} from '../settings'
 
 // Local Storage
 const localStorageGetItem = (key: string): object | null =>  {
@@ -15,20 +14,23 @@ const localStorageSetItem = (data: StorageData): void => {
 }
 
 // Chrome Storage
-const getData = (key: string, callback?: any): any => {
-  if (isProd()) {
-    chrome.storage.sync.get([key], callback);
-  } else {
-    return localStorageGetItem(key)
-  }
+const getData = (key: string): any => {
+  /// #if env == 'production'
+  chrome.storage.sync.get([key], function(result) {
+    console.log('Value currently is ' + result);
+    return result
+  })
+  /// #else
+  return localStorageGetItem(key)
+  /// #endif
 }
 
-const setData = (data: StorageData, callback?: any) => {
-  if (isProd()) {
-    chrome.storage.sync.set(data, () => callback ? callback() : null)
-  } else {
-    localStorageSetItem(data)
-  }
+const setData = (data: StorageData) => {
+  /// #if env == 'production'
+  chrome.storage.sync.set(data)
+  /// #else
+  localStorageSetItem(data)
+  /// #endif
 }
 
 export {

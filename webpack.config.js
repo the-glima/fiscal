@@ -6,6 +6,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ImageMinPlugin = require('imagemin-webpack-plugin').default;
 const getHTMLPluginConfig = require('./webpack/html-plugin.webpack');
+const ifdefOptions = require('./webpack/ifdef-options.webpack');
 
 const config = {
   entry: {
@@ -32,7 +33,10 @@ const config = {
     rules: [
       {
         test: /\.tsx?$/,
-        use: 'ts-loader',
+        use: [
+          { loader: "ts-loader" }, 
+          { loader: "ifdef-loader", options: ifdefOptions } 
+        ],
         exclude: /node_modules/
       },
       {
@@ -63,14 +67,14 @@ const config = {
       }
     ])
   ].concat(getHTMLPluginConfig()),
-  optimization: {
-    minimizer: [
-      new TerserPlugin({
-        parallel: true,
-      }),
-      new OptimizeCssAssetsPlugin({}),
-    ],
-  }
+  // optimization: {
+  //   minimizer: [
+  //     new TerserPlugin({
+  //       parallel: true,
+  //     }),
+  //     new OptimizeCssAssetsPlugin({}),
+  //   ],
+  // }
 };
 
 module.exports = config;

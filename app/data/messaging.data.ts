@@ -1,19 +1,17 @@
-import {isProd} from '../settings'
-
 const onMessage = (callback: any) => {
-  if (!isProd) {
-    chrome.runtime.onMessage.addListener(callback)
-  } else {
-    console.log('🧾 FISCAL: Reading a message');
-  }
+  /// #if env == 'production'
+  chrome.runtime.onMessage.addListener(callback)
+  /// #else
+  console.log('🧾 FISCAL: Reading a message');
+  /// #endif
 }
 
-const sendMessage = (data: object, callback?: any) => {
-  if (!isProd) {
-    chrome.runtime.sendMessage(data, (response) => callback ? callback(response) : null);
-  } else {
-    console.log(`📩 FISCAL: Sending a message ${JSON.stringify(data)}`);
-  }
+const sendMessage = (data: object) => {
+  /// #if env == 'production'
+  chrome.runtime.sendMessage(data, (response) => console.log(`📩 FISCAL: Sending a message ${JSON.stringify(response)}`));
+  /// #else
+  console.log(`📩 FISCAL: Sending a message ${JSON.stringify(data)}`);
+  /// #endif
 }
 
 export {
