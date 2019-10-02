@@ -6,5 +6,6 @@ module.exports = {
   coverageDirectory: 'test/static/coverage',
   transform: {
     "^.+\\.tsx?$": "ts-jest"
-  }
+  }, 
+  verbose: true
 }

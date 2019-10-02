@@ -1,0 +1,22 @@
+// Layout: Scaffold
+// ----------------------------------------
+
+*,
+*:before,
+*:after { box-sizing: border-box; }
+
+html,
+body { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: $base-font-family;
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+}
+
+.fiscal-wrapper {
+  width: 600px;
+  padding: $card-padding;
+  background-color: theme-color('white', 'ice');
+}

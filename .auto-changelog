@@ -1,5 +1,5 @@
 {
-  "template": "changelog/template.hbs",
+  "template": "auto-changelog.hbs",
   "unreleased": false,
   "commitLimit": false
 }

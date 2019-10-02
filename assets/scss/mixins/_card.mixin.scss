@@ -1,0 +1,8 @@
+// Mixin: Card
+// --------------------------------------------
+
+@mixin card($reset: null) {
+  padding: $card-padding;
+  background-color: theme-color('white', 'ice');
+  @include shadow;
+}
