@@ -1,18 +1,17 @@
-import {getData} from '../data/get-set.data'
 import {CustomObjectValues} from '../models/custom-object-values.model'
 
-const dataObject = getData('popupData')
+export const searchRegex = (data: any) => {
+  console.log('=STARTLOG <>================================<> STARTLOG=');
+  console.log(Object.values(data));
+  console.log('=ENDLOG <>================================<> ENDLOG=');
+  const dataArray: CustomObjectValues = Object.values(data.popupData)
 
-const dataArray: CustomObjectValues = Object.values(dataObject)
+  const searchValues = dataArray
+    .filter((x: string) => !!x)
+    .map((a: string) => a.split(','))
+    .map((b: []) => b.map((c: string) => c.trim()))
+    .flat()
+    .join('|')
 
-const searchValues = dataArray
-  .filter((x: string) => !!x)
-  .map((a: string) => a.split(','))
-  .map((b: []) => b.map((c: string) => c.trim()))
-  .flat()
-  .join('|')
-
-const searchRegex = new RegExp(searchValues, 'gm')
-
-export {searchRegex}
- 
+  return new RegExp(searchValues, 'gm')
+}

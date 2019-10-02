@@ -1,5 +1,7 @@
-import {settings} from '../settings'
+import {getSyncedData} from '../data/get-set.data'
+import {DataEnum} from '../models/storage-data.model'
 import {searchRegex} from '../popup/search'
+import {settings} from '../settings'
 
 import {addStyle} from './add-style'
 import {findMatch} from './find-match'
@@ -13,7 +15,14 @@ export const paint = (container = getters.getContainer(), codeLine = getters.get
 
   observer.observe(container, settings.mutationObserver)
 
-  const arrayMatches = findMatch(searchRegex, codeLine)
+  getSyncedData(DataEnum.name, (result: any) => {
+    const regex = searchRegex(result)
+    const arrayMatches = findMatch(regex, codeLine)
 
-  addStyle(arrayMatches, 'span', settings.styles)
+    console.log('=STARTLOG <>================================<> STARTLOG=');
+    console.log(regex);
+    console.log('=ENDLOG <>================================<> ENDLOG=');
+
+    addStyle(arrayMatches, 'span', settings.styles)
+  })
 }

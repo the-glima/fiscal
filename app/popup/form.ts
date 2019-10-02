@@ -1,37 +1,35 @@
-import {getData, setData} from '../data/get-set.data'
+import {setSyncedData} from '../data/get-set.data'
 import {sendMessage} from '../data/messaging.data'
+import {DataEnum} from '../models/storage-data.model'
 
-const onSubmit = () => {
-  const form = document.getElementById('fiscal-popup-form') as HTMLFormElement
+const onSubmit = (event: any) => {
+  event.preventDefault()
+  event.stopPropagation()
 
-  form.addEventListener('submit', event => {
-    event.preventDefault()
+  const formData = new FormData(event.target)
 
-    const formData = new FormData(form)
+  const formDataObject = [...formData].reduce((acc: any, cur: any) => {
+    acc[cur[0]] = cur[1]
 
-    const formDataObject = [...formData].reduce((acc: any, cur: any) => {
-      acc[cur[0]] = cur[1]
+    return acc
+  }, {})
 
-      return acc
-    }, {})
+  const result = {
+    popupData: {...formDataObject}
+  }
 
-    const popupData = {
-      name: 'popupData',
-      data: {...formDataObject}
-    }
-
-    sendMessage(popupData);
-    setData(popupData);
-  })
+  setSyncedData(result)
+  sendMessage(result)
 }
 
-const updateForm = () => {
-  const data = getData('popupData')
-  const word = document.getElementById('fiscal-popup-word') as HTMLFormElement
-  const regex = document.getElementById('fiscal-popup-regex') as HTMLFormElement
+const updateForm = (result: any) => {
+  if (!result) return
+  
+  const word = document.getElementById(DataEnum.wordInput) as HTMLFormElement
+  const regex = document.getElementById(DataEnum.regexInput) as HTMLFormElement
 
-  word.value = data['fiscal-popup-word']
-  regex.value = data['fiscal-popup-regex']
+  word.value = result[DataEnum.name][DataEnum.wordInput]
+  regex.value = result[DataEnum.name][DataEnum.regexInput]
 }
 
 export {

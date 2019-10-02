@@ -1,17 +1,12 @@
 const onMessage = (callback: any) => {
-  /// #if env == 'production'
+  console.log('🧾 FISCAL: Reading a message')
   chrome.runtime.onMessage.addListener(callback)
-  /// #else
-  console.log('🧾 FISCAL: Reading a message');
-  /// #endif
 }
 
 const sendMessage = (data: object) => {
-  /// #if env == 'production'
-  chrome.runtime.sendMessage(data, (response) => console.log(`📩 FISCAL: Sending a message ${JSON.stringify(response)}`));
-  /// #else
-  console.log(`📩 FISCAL: Sending a message ${JSON.stringify(data)}`);
-  /// #endif
+  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+    chrome.tabs.sendMessage((tabs[0].id) as number, data);
+  });
 }
 
 export {
