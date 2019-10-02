@@ -3,9 +3,7 @@ export const mutationObserver = (callback: any) => {
 
   const mutationCallback = (mutations: MutationRecord[]) =>
     mutations.forEach((mutation: MutationRecord) => {
-      console.log(mutation)
-
-      if (mutation.type === 'childList') {
+      if (mutation.type === 'childList' && callback) {
         callback()
       }
     })

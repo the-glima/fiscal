@@ -1,10 +1,10 @@
 import {getSyncedData} from './data/get-set.data'
-import {DataEnum} from './models/storage-data.model'
+import {PopupDataEnum} from './models/popup-data.model'
 import {onSubmit, updateForm} from './popup/form'
 
-(() => {
-  const form = document.getElementById(DataEnum.form) as HTMLFormElement
+;(() => {
+  const form = document.getElementById(PopupDataEnum.form) as HTMLFormElement
   form.addEventListener('submit', onSubmit)
 
-  getSyncedData(DataEnum.name, updateForm)
+  getSyncedData(PopupDataEnum.name, updateForm)
 })()

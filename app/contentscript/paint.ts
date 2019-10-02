@@ -1,5 +1,5 @@
 import {getSyncedData} from '../data/get-set.data'
-import {DataEnum} from '../models/storage-data.model'
+import {PopupDataEnum} from '../models/popup-data.model'
 import {searchRegex} from '../popup/search'
 import {settings} from '../settings'
 
@@ -11,18 +11,14 @@ import {mutationObserver} from './mutation-observer'
 export const paint = (container = getters.getContainer(), codeLine = getters.getCodeLine()) => {
   if (!container || !codeLine.length) return
 
-  const observer = mutationObserver(addStyle)
-
-  observer.observe(container, settings.mutationObserver)
-
-  getSyncedData(DataEnum.name, (result: any) => {
+  getSyncedData(PopupDataEnum.name, (result: any) => {
     const regex = searchRegex(result)
     const arrayMatches = findMatch(regex, codeLine)
 
-    console.log('=STARTLOG <>================================<> STARTLOG=');
-    console.log(regex);
-    console.log('=ENDLOG <>================================<> ENDLOG=');
-
     addStyle(arrayMatches, 'span', settings.styles)
+
+    const observer = mutationObserver(addStyle(arrayMatches, 'span', settings.styles))
+
+    observer.observe(container, settings.mutationObserver)
   })
 }

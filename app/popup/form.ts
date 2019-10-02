@@ -1,10 +1,10 @@
 import {setSyncedData} from '../data/get-set.data'
 import {sendMessage} from '../data/messaging.data'
-import {DataEnum} from '../models/storage-data.model'
+import {PopupDataEnum} from '../models/popup-data.model'
+import {PopupData} from '../models/popup-data.model'
 
 const onSubmit = (event: any) => {
   event.preventDefault()
-  event.stopPropagation()
 
   const formData = new FormData(event.target)
 
@@ -14,7 +14,7 @@ const onSubmit = (event: any) => {
     return acc
   }, {})
 
-  const result = {
+  const result: PopupData = {
     popupData: {...formDataObject}
   }
 
@@ -22,17 +22,14 @@ const onSubmit = (event: any) => {
   sendMessage(result)
 }
 
-const updateForm = (result: any) => {
+const updateForm = (result: PopupData) => {
   if (!result) return
-  
-  const word = document.getElementById(DataEnum.wordInput) as HTMLFormElement
-  const regex = document.getElementById(DataEnum.regexInput) as HTMLFormElement
 
-  word.value = result[DataEnum.name][DataEnum.wordInput]
-  regex.value = result[DataEnum.name][DataEnum.regexInput]
+  const word = document.getElementById(PopupDataEnum.wordInput) as HTMLFormElement
+  const regex = document.getElementById(PopupDataEnum.regexInput) as HTMLFormElement
+
+  word.value = result[PopupDataEnum.name][PopupDataEnum.wordInput]
+  regex.value = result[PopupDataEnum.name][PopupDataEnum.regexInput]
 }
 
-export {
-  onSubmit,
-  updateForm
-}
+export {onSubmit, updateForm}

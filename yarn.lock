@@ -2473,10 +2473,10 @@ create-hmac@^1.1.0, create-hmac@^1.1.2, create-hmac@^1.1.4:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-cross-env@^6.0.0:
-  version "6.0.0"
-  resolved "https://pkgs.dev.azure.com/payvision/_packaging/Resistance/npm/registry/cross-env/-/cross-env-6.0.0.tgz#3c8e71440ea20aa6faaf5aec541235efc565dac6"
-  integrity sha1-PI5xRA6iCqb6r1rsVBI178Vl2sY=
+cross-env@^6.0.3:
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/cross-env/-/cross-env-6.0.3.tgz#4256b71e49b3a40637a0ce70768a6ef5c72ae941"
+  integrity sha512-+KqxF6LCvfhWvADcDPqo64yVIB31gv/jQulX2NGzKS/g3GEVz6/pt4wjHFtFWsHMddebWD/sDthJemzM4MaAag==
   dependencies:
     cross-spawn "^7.0.0"
 
@@ -2510,8 +2510,8 @@ cross-spawn@^5.0.1:
 
 cross-spawn@^7.0.0:
   version "7.0.0"
-  resolved "https://pkgs.dev.azure.com/payvision/_packaging/Resistance/npm/registry/cross-spawn/-/cross-spawn-7.0.0.tgz#21ef9470443262f33dba80b2705a91db959b2e03"
-  integrity sha1-Ie+UcEQyYvM9uoCycFqR25WbLgM=
+  resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-7.0.0.tgz#21ef9470443262f33dba80b2705a91db959b2e03"
+  integrity sha512-6U/8SMK2FBNnB21oQ4+6Nsodxanw1gTkntYA2zBdkFYFu3ZDx65P2ONEXGSvob/QS6REjVHQ9zxzdOafwFdstw==
   dependencies:
     path-key "^3.1.0"
     shebang-command "^1.2.0"
@@ -4806,8 +4806,8 @@ ieee754@^1.1.4:
 
 ifdef-loader@^2.1.4:
   version "2.1.4"
-  resolved "https://pkgs.dev.azure.com/payvision/_packaging/Resistance/npm/registry/ifdef-loader/-/ifdef-loader-2.1.4.tgz#1f0c22f7e92cf216132511b148ca1c3a31d77635"
-  integrity sha1-Hwwi9+ks8hYTJRGxSMocOjHXdjU=
+  resolved "https://registry.yarnpkg.com/ifdef-loader/-/ifdef-loader-2.1.4.tgz#1f0c22f7e92cf216132511b148ca1c3a31d77635"
+  integrity sha512-jwlI3q7PbOU5NlN6pB8atrpx4Yg8gdVNKQIOymlbuHblbShivEZUjsC3Oxwmf9bRApL5NckIiCdB0TGikuHbGQ==
   dependencies:
     loader-utils "^1.1.0"
 
