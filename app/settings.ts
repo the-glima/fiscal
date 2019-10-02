@@ -10,8 +10,13 @@ export const settings = {
     background-color: #ef4d4d !important;
   `,
   elements: {
-    container: ['summaryContainer'],
-    codeLine: ['.vc-diff-viewer .code-line', '.view-lines .view-line']
+    container: ['summaryContainer', 'diff-view'],
+    codeLine: [
+      '.vc-diff-viewer .code-line', //
+      '.view-lines .view-line',
+      '.blob-code-marker',
+      '.blob-code'
+    ]
   },
   mutationObserver: {
     childList: true,

@@ -19,6 +19,6 @@ export const paint = (container = getters.getContainer(), codeLine = getters.get
 
     const observer = mutationObserver(addStyle(arrayMatches, 'span', settings.styles))
 
-    observer.observe(container, settings.mutationObserver)
+    observer.observe(container[0], settings.mutationObserver)
   })
 }
