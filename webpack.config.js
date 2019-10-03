@@ -10,6 +10,9 @@ const ifdefOptions = require('./webpack/ifdef-options.webpack');
 
 const config = {
   entry: {
+    background: [
+      path.resolve(__dirname + '/app/background.ts')
+    ],
     contentscript: [
       path.resolve(__dirname + '/app/contentscript.ts')
     ],
@@ -67,14 +70,14 @@ const config = {
       }
     ])
   ].concat(getHTMLPluginConfig()),
-  // optimization: {
-  //   minimizer: [
-  //     new TerserPlugin({
-  //       parallel: true,
-  //     }),
-  //     new OptimizeCssAssetsPlugin({}),
-  //   ],
-  // }
+  optimization: {
+    minimizer: [
+      new TerserPlugin({
+        parallel: true,
+      }),
+      new OptimizeCssAssetsPlugin({}),
+    ],
+  }
 };
 
 module.exports = config;

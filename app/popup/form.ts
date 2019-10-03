@@ -1,7 +1,11 @@
 import {setSyncedData} from '../data/get-set.data'
-import {sendMessage} from '../data/messaging.data'
-import {PopupDataEnum} from '../models/popup-data.model'
-import {PopupData} from '../models/popup-data.model'
+import {sendTabMessage} from '../data/messaging.data'
+import {PopupDataEnum} from '../models/popup.model'
+import {PopupData} from '../models/popup.model'
+
+const onClose = () => {
+  window.close()
+}
 
 const onSubmit = (event: any) => {
   event.preventDefault()
@@ -19,17 +23,16 @@ const onSubmit = (event: any) => {
   }
 
   setSyncedData(result)
-  sendMessage(result)
+  sendTabMessage(result)
+  onClose()
 }
 
 const updateForm = (result: PopupData) => {
   if (!result) return
 
-  const word = document.getElementById(PopupDataEnum.wordInput) as HTMLFormElement
-  const regex = document.getElementById(PopupDataEnum.regexInput) as HTMLFormElement
+  const word = document.getElementById(PopupDataEnum.searchTermInput) as HTMLFormElement
 
-  word.value = result[PopupDataEnum.name][PopupDataEnum.wordInput]
-  regex.value = result[PopupDataEnum.name][PopupDataEnum.regexInput]
+  word.value = result[PopupDataEnum.name][PopupDataEnum.searchTermInput]
 }
 
-export {onSubmit, updateForm}
+export {onClose, onSubmit, updateForm}

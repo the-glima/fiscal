@@ -1,20 +1,37 @@
 import * as getters from './getters'
 import {paint} from './paint'
 
-export const onReady = (): any => {
-  const container = getters.getContainer()
+const onScroll = (container: any) => {
+  let timeout: any
 
-  if (document.body && container) {
-    const codeLine = getters.getCodeLine()
+  container.addEventListener(
+    'scroll',
+    (event: any) => {
+      if (timeout) window.cancelAnimationFrame(timeout)
 
-    if (codeLine && codeLine.length > 1) {
-      paint()
+      timeout = window.requestAnimationFrame(paint)
+    },
+    false
+  )
+}
 
-      container.addEventListener('scroll', () => paint(), false)
+const onReady = (): any => {
+  if (document.body) {
+    const container = getters.getContainer()
 
-      return
+    if (container && container[0]) {
+      const codeLine = getters.getCodeLine()
+
+      if (codeLine && codeLine.length > 1) {
+        paint()
+        onScroll(container[0])
+
+        return
+      }
     }
   }
 
   window.requestAnimationFrame(onReady)
 }
+
+export {onScroll, onReady}

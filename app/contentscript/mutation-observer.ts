@@ -1,4 +1,4 @@
-export const mutationObserver = (callback: any) => {
+export const mutationObserver = (callback: any, cbParams: any) => {
   const MutationObserver: any =
     window[<any>'MutationObserver'] || //
     window[<any>'WebKitMutationObserver'] ||
@@ -7,7 +7,7 @@ export const mutationObserver = (callback: any) => {
   const mutationCallback = (mutations: MutationRecord[]) =>
     mutations.forEach((mutation: MutationRecord) => {
       if (mutation.type === 'childList' && callback) {
-        callback()
+        callback(cbParams)
       }
     })
 

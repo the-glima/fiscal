@@ -1,12 +1,17 @@
-const onMessage = (callback: any) => {
-  console.log('🧾 FISCAL: Reading a message')
-  chrome.runtime.onMessage.addListener(callback)
+const onMessage = (callback: Function) => {
+  chrome.runtime.onMessage.addListener((response: any) => {
+    callback(response)
+  })
 }
 
 const sendMessage = (data: object) => {
-  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+  chrome.runtime.sendMessage(data)
+}
+
+const sendTabMessage = (data: object) => {
+  chrome.tabs.query({active: true, currentWindow: true}, tabs => {
     chrome.tabs.sendMessage(tabs[0].id as number, data)
   })
 }
 
-export {onMessage, sendMessage}
+export {onMessage, sendMessage, sendTabMessage}

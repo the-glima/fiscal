@@ -1,24 +1,26 @@
 import {getSyncedData} from '../data/get-set.data'
-import {PopupDataEnum} from '../models/popup-data.model'
-import {searchRegex} from '../popup/search'
-import {settings} from '../settings'
+import {sendMessage} from '../data/messaging.data'
+import {MatchesData} from '../models/contentscript.model'
+import {PopupDataEnum} from '../models/popup.model'
+import {getRegex} from '../popup/get-regex'
 
-import {addStyle} from './add-style'
+import {addStyle, removeStyle} from './add-style'
 import {findMatch} from './find-match'
 import * as getters from './getters'
-import {mutationObserver} from './mutation-observer'
 
 export const paint = (container = getters.getContainer(), codeLine = getters.getCodeLine()) => {
   if (!container || !codeLine.length) return
 
   getSyncedData(PopupDataEnum.name, (result: any) => {
-    const regex = searchRegex(result)
+    const regex = getRegex(result)
+
+    if (!regex) return
+
     const arrayMatches = findMatch(regex, codeLine)
+    const arrayMatchesParam: MatchesData = {matches: arrayMatches}
 
-    addStyle(arrayMatches, 'span', settings.styles)
-
-    const observer = mutationObserver(addStyle(arrayMatches, 'span', settings.styles))
-
-    observer.observe(container[0], settings.mutationObserver)
+    removeStyle()
+    addStyle(arrayMatchesParam)
+    sendMessage(arrayMatchesParam)
   })
 }
