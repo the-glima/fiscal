@@ -1,5 +1,5 @@
 {
-  "name" : "fiscal",
+  "name" : "Fiscal",
   "version" : "0.1.0",
   "description" : "A Chrome Extension for checking PRs matches.",
   "permissions": [
@@ -13,6 +13,9 @@
     "default_popup": "dist/popup.html"
   },
   "manifest_version": 2,
+  "background": {
+    "scripts":["dist/background.min.js"]
+  },
   "content_scripts": [
     {
       "matches": [

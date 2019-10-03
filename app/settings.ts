@@ -9,6 +9,7 @@ export const settings = {
     border-top: 1px solid #953131 !important;
     background-color: #ef4d4d !important;
   `,
+  badgeBgColor: '#e41313',
   elements: {
     container: ['summaryContainer', 'diff-view'],
     codeLine: [

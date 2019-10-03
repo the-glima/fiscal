@@ -11,24 +11,14 @@
     <div class="fiscal-wrapper">
       <header>
         <h1>👮🏻‍♂️ Fiscal</h1>
-        <p>I'm here to fiscalize you PR. Tell me what things you want me to look for.</p>
+        <p>I'm here to <em>fiscalize</em> you PR. Tell me what things you want me to look for.</p>
       </header>
 
       <form action="#" id="fiscal-popup-form">
         <div class="form-field">
-          <label class="form-label">Word</label>
-          <p>A word(s) to look for, it could be multiple words just make sure to separate them using comma:</p>
-          <textarea id="fiscal-popup-word" name="fiscal-popup-word" class="form-textarea form-input"  rows="1" placeholder='Example: only, console.log, Foo-bar'></textarea>
-        </div>
-
-        <div class="form-field">
-          <label class="form-label">Regex</label>
-          <p>Do you like Regular Expressions? Who doesn't? Don't get to crazy:</p>
-
-          <div class="regex-wrapper">
-            <input id="fiscal-popup-regex" name="fiscal-popup-regex" type="text" class="form-input" placeholder="Example: \/\/">
-            <ul id="regex-list""></ul>
-          </div>
+          <label class="form-label">Expressions to look for</label>
+          <p>You can add as many as you like just make sure to separate them using comma and keep in mind that is case sensitive. Do you like Regular Expressions? Who doesn't? You can add here as well (e.g.: /regex/), just don't get to crazy:</p>
+          <textarea id="fiscal-popup-search-term" name="fiscal-popup-search-term" class="form-textarea form-input"  rows="1" placeholder='Example: only, console.log, Foo Bar, /[a-zA-Z]+/'></textarea>
         </div>
 
         <div class="flex justify-content-end">

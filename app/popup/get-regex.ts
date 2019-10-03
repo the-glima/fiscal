@@ -1,7 +1,6 @@
-import {CustomObjectValues} from '../models/custom-object-values.model'
-import {PopupData} from '../models/popup-data.model'
+import {CustomObjectValues, PopupData} from '../models/popup.model'
 
-export const searchRegex = (data: any) => {
+export const getRegex = (data: any): RegExp | null => {
   const dataArray: CustomObjectValues = Object.values(data.popupData)
 
   const searchValues = dataArray
@@ -11,5 +10,5 @@ export const searchRegex = (data: any) => {
     .flat()
     .join('|')
 
-  return new RegExp(searchValues, 'gm')
+  return searchValues ? new RegExp(searchValues, 'gm') : null
 }
