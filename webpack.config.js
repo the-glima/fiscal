@@ -67,6 +67,11 @@ const config = {
         from: path.resolve(__dirname, 'assets', 'images'),
         to: path.resolve(__dirname, 'dist', 'images'),
         toType: 'dir',
+      },
+      {
+        from: path.resolve(__dirname, 'manifest.json'),
+        to: path.resolve(__dirname, 'dist', 'manifest.json'),
+        toType: 'file',
       }
     ])
   ].concat(getHTMLPluginConfig()),

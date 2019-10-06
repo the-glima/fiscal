@@ -1,5 +1,5 @@
 import {setSyncedData} from '../data/get-set.data'
-import {sendTabMessage} from '../data/messaging.data'
+import {sendMessage, sendTabMessage} from '../data/messaging.data'
 import {PopupDataEnum} from '../models/popup.model'
 import {PopupData} from '../models/popup.model'
 
@@ -23,12 +23,12 @@ const onSubmit = (event: any) => {
   }
 
   setSyncedData(result)
-  sendTabMessage(result)
+  sendTabMessage({from: 'Popup: onSubmit', ...result})
   onClose()
 }
 
 const updateForm = (result: PopupData) => {
-  if (!result) return
+  if (!result.popupData) return
 
   const word = document.getElementById(PopupDataEnum.searchTermInput) as HTMLFormElement
 
