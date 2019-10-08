@@ -1,7 +1,7 @@
 import {onReady} from './contentscript/on-ready'
 import {paint} from './contentscript/paint'
 import {onMessage} from './data/messaging.data'
-import {MessageEventParams} from './models/contentscript.model'
+import {MessageEventParams} from './models/messaging.model'
 
 // ContentScript Init
 ;(() => {

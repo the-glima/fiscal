@@ -1,4 +1,3 @@
-// Chrome Storage
 const getSyncedData = (key: any, callback: any) => {
   chrome.storage.sync.get([key], result => callback(result))
 }

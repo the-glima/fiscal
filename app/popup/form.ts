@@ -1,6 +1,6 @@
 import {setSyncedData} from '../data/get-set.data'
 import {sendTabMessage} from '../data/messaging.data'
-import {MessageData, MessageDataEnum} from '../models/messaging.model'
+import {MessageData} from '../models/messaging.model'
 import {PopupDataEnum} from '../models/popup.model'
 
 const onSubmit = (event: any) => {

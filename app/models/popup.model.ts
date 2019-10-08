@@ -1,7 +1,3 @@
-type CustomObjectValues = {
-  [key: string]: any
-}
-
 interface PopupData {
   popupData: {
     'fiscal-popup-search-term': string
@@ -14,4 +10,7 @@ enum PopupDataEnum {
   searchTermInput = 'fiscal-popup-search-term'
 }
 
-export {CustomObjectValues, PopupData, PopupDataEnum}
+export {
+  PopupData, //
+  PopupDataEnum
+}
