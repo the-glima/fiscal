@@ -45,10 +45,11 @@ import {settings} from './settings'
       // When receiving a message from contentscript with updated matches
       onMessage((params: MessageEventParams) => {
         const {message} = params
+        const matches = message && message.contentscriptData && message.contentscriptData.matches
 
-        if (!message || !message.matches) return
+        if (!matches) return
 
-        updateBadge(message.matches.length)
+        updateBadge(matches.length)
       })
     })
   })

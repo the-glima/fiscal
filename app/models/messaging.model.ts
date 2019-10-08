@@ -1,9 +1,3 @@
-interface MessageEventParams {
-  message: any
-  sender: chrome.runtime.MessageSender
-  sendResponse: (response?: any) => void
-}
-
 interface MessageData {
   from: string
   searchTerm?: string | null
@@ -21,6 +15,12 @@ type MessageDataType = MessageDataEnum.popupData | MessageDataEnum.contentscript
 
 type MessageDataObject = {
   [key in MessageDataType]: MessageData
+}
+
+interface MessageEventParams {
+  message: MessageDataObject
+  sender: chrome.runtime.MessageSender
+  sendResponse: (response?: any) => void
 }
 
 export {
