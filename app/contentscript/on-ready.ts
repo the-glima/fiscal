@@ -1,4 +1,3 @@
-import {sendMessage} from '../data/messaging.data'
 import * as getters from './getters'
 import {paint} from './paint'
 
