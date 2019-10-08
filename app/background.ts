@@ -1,7 +1,8 @@
 import {checkPage} from './contentscript/check-page'
 import {getSyncedData} from './data/get-set.data'
 import {onMessage} from './data/messaging.data'
-import {MatchesData} from './models/contentscript.model'
+import {MessageEventParams} from './models/contentscript.model'
+import {MessageData, MessageDataEnum} from './models/messaging.model'
 import {settings} from './settings'
 
 // Background Init
@@ -34,10 +35,21 @@ import {settings} from './settings'
       // Active page action and update badge when a message is heard
       chrome.browserAction.enable()
 
-      getSyncedData('contentMatches', (syncedData: MatchesData) => {
-        if (!syncedData.contentMatches) return
+      getSyncedData(MessageDataEnum.contentscriptData, (messageData: any) => {
+        console.log('%c⧭', 'color: #006dcc', messageData)
 
-        updateBadge(syncedData.contentMatches.length)
+        if (!messageData || !messageData.matches) return
+
+        updateBadge(messageData.matches.length)
+      })
+
+      // When receiving a message from contentscript with updated matches
+      onMessage((params: MessageEventParams) => {
+        const {message} = params
+
+        if (!message || !message.matches) return
+
+        updateBadge(message.matches.length)
       })
     })
   })

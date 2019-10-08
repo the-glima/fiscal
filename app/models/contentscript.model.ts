@@ -1,5 +1,5 @@
 interface AddStyleParams {
-  contentMatches: Element[]
+  contentMatches: Element[] | undefined
   targetElement?: string
   style?: string
 }

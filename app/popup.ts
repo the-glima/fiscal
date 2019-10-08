@@ -1,5 +1,5 @@
 import {getSyncedData} from './data/get-set.data'
-import {sendTabMessage} from './data/messaging.data'
+import {MessageDataEnum} from './models/messaging.model'
 import {PopupDataEnum} from './models/popup.model'
 import {onSubmit, updateForm} from './popup/form'
 
@@ -12,5 +12,5 @@ import {onSubmit, updateForm} from './popup/form'
   form.addEventListener('submit', onSubmit)
 
   // Get Chrome Sync Data and update form inputs
-  getSyncedData(PopupDataEnum.name, updateForm)
+  getSyncedData(MessageDataEnum.popupData, updateForm)
 })()

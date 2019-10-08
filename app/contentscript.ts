@@ -15,8 +15,4 @@ import {MessageEventParams} from './models/contentscript.model'
   onMessage((params: MessageEventParams) => {
     paint()
   })
-
-  chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    console.log(message, sender, sendResponse)
-  })
 })()
