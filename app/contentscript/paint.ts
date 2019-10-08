@@ -1,7 +1,6 @@
-import {getSyncedData} from '../data/get-set.data'
+import {getSyncedData, setSyncedData} from '../data/get-set.data'
 import {sendMessage} from '../data/messaging.data'
-import {MatchesData} from '../models/contentscript.model'
-import {PopupDataEnum} from '../models/popup.model'
+import {MessageData, MessageDataEnum, MessageDataObject} from '../models/messaging.model'
 import {getRegex} from '../popup/get-regex'
 
 import {addStyle, removeStyle} from './add-style'
@@ -11,16 +10,27 @@ import * as getters from './getters'
 export const paint = (container = getters.getContainer(), codeLine = getters.getCodeLine()) => {
   if (!container || !codeLine.length) return
 
-  getSyncedData(PopupDataEnum.name, (result: any) => {
-    const regex = getRegex(result)
+  getSyncedData(MessageDataEnum.popupData, (messageData: MessageDataObject) => {
+    const searchTerm = messageData && messageData.popupData && messageData.popupData.searchTerm
+
+    if (!searchTerm) return
+
+    const regex = getRegex(searchTerm)
 
     if (!regex) return
 
-    const arrayMatches = findMatch(regex, codeLine)
-    const arrayMatchesParam: MatchesData = {matches: arrayMatches}
+    const matchesFound = findMatch(regex, codeLine)
+
+    const messageDataMatches = {
+      contentscriptData: {
+        from: '‍🚀 Contentscript: onReady',
+        matches: matchesFound
+      } as MessageData
+    }
 
     removeStyle()
-    addStyle(arrayMatchesParam)
-    sendMessage(arrayMatchesParam)
+    addStyle({contentMatches: matchesFound})
+    setSyncedData(messageDataMatches)
+    sendMessage(messageDataMatches)
   })
 }

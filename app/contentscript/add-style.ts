@@ -1,13 +1,16 @@
 import {AddStyleParams, ItemFoundEnum} from '../models/contentscript.model'
 import {settings} from '../settings'
 
-const addStyle = ({matches, targetElement = 'span', style = settings.styles}: AddStyleParams) =>
-  matches.forEach((el: Element) =>
+const addStyle = ({contentMatches, targetElement = 'span', style = settings.styles}: AddStyleParams) => {
+  if (!contentMatches) return
+
+  contentMatches.forEach((el: Element) =>
     el.querySelectorAll(targetElement).forEach((child: any) => {
       child.className = ItemFoundEnum.class
       child.style.cssText = style
     })
   )
+}
 
 const removeStyle = (elementClass = ItemFoundEnum.class) => {
   const styledElements = document.querySelectorAll(`.${elementClass}`)

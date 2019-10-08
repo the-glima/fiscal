@@ -1,6 +1,6 @@
 const onMessage = (callback: Function) => {
-  chrome.runtime.onMessage.addListener((response: any) => {
-    callback(response)
+  chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    callback({message, sender, sendResponse})
   })
 }
 

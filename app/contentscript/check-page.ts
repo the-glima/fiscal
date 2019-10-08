@@ -1,1 +1,3 @@
-export const checkPage = (urls: string[]): boolean => urls.some(url => window.location.href.match(url))
+import {settings} from '../settings'
+
+export const checkPage = (urlToCheck: string[]): boolean => settings.url.some(url => urlToCheck.includes(url))

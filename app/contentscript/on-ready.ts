@@ -6,7 +6,7 @@ const onScroll = (container: any) => {
 
   container.addEventListener(
     'scroll',
-    (event: any) => {
+    () => {
       if (timeout) window.cancelAnimationFrame(timeout)
 
       timeout = window.requestAnimationFrame(paint)

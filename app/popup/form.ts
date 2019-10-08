@@ -1,38 +1,36 @@
 import {setSyncedData} from '../data/get-set.data'
 import {sendTabMessage} from '../data/messaging.data'
+import {MessageData, MessageDataObject} from '../models/messaging.model'
 import {PopupDataEnum} from '../models/popup.model'
-import {PopupData} from '../models/popup.model'
-
-const onClose = () => {
-  window.close()
-}
 
 const onSubmit = (event: any) => {
   event.preventDefault()
 
-  const formData = new FormData(event.target)
+  const searchTerm = document.getElementById(PopupDataEnum.searchTermInput) as HTMLFormElement
 
-  const formDataObject = [...formData].reduce((acc: any, cur: any) => {
-    acc[cur[0]] = cur[1]
-
-    return acc
-  }, {})
-
-  const result: PopupData = {
-    popupData: {...formDataObject}
+  const messageData = {
+    popupData: {
+      from: '‍🍿 Popup: onSubmit',
+      searchTerm: searchTerm.value
+    } as MessageData
   }
 
-  setSyncedData(result)
-  sendTabMessage(result)
-  onClose()
+  setSyncedData(messageData)
+  sendTabMessage(messageData)
+  window.close()
 }
 
-const updateForm = (result: PopupData) => {
-  if (!result) return
+const updateForm = (messageData: MessageDataObject) => {
+  const searchTerm = messageData && messageData.popupData && messageData.popupData.searchTerm
+
+  if (!searchTerm) return
 
   const word = document.getElementById(PopupDataEnum.searchTermInput) as HTMLFormElement
 
-  word.value = result[PopupDataEnum.name][PopupDataEnum.searchTermInput]
+  word.value = searchTerm
 }
 
-export {onClose, onSubmit, updateForm}
+export {
+  onSubmit, //
+  updateForm
+}

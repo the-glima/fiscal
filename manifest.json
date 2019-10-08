@@ -1,29 +1,36 @@
 {
-  "name" : "Fiscal",
+  "name" : "PR Fiscal",
   "version" : "0.1.0",
   "description" : "A Chrome Extension for checking PRs matches.",
+  "manifest_version": 2,
   "permissions": [
-    "<all_urls>",
     "activeTab",
     "tabs",
     "storage"
   ],
   "browser_action": {
-    "default_icon": "dist/images/icon.png",
-    "default_popup": "dist/popup.html"
+    "default_icon" : {
+      "16" : "images/icon-16.png",
+      "48" : "images/icon-48.png"
+    },
+    "default_title" : "PR Fiscal",
+    "default_popup": "popup.html"
   },
-  "manifest_version": 2,
   "background": {
-    "scripts":["dist/background.min.js"]
+    "scripts": ["background.min.js"],
+    "persistent": false
   },
-  "content_scripts": [
-    {
-      "matches": [
-        "http://localhost:3000/",
-        "https://dev.azure.com/payvision/B-Ops/_git/*",
-        "https://github.com/the-glima/fiscal/pull/*"
-      ],
-      "js" : ["dist/contentscript.min.js"]
-    }
-  ]
+  "content_scripts": [{
+    "js" : ["contentscript.min.js"],
+    "matches": [
+      "*://dev.azure.com/payvision/*/_git/*",
+      "*://github.com/*/*/pull/*"
+    ]
+  }],
+  "icons" : {
+    "16" : "images/icon-16.png",
+    "32" : "images/icon-32.png",
+    "48" : "images/icon-48.png",
+    "128" : "images/icon-128.png"
+  }
 }
