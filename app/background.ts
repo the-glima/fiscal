@@ -1,7 +1,7 @@
 import {checkPage} from './contentscript/check-page'
 import {getSyncedData} from './data/get-set.data'
-import {onMessage} from './data/messaging.data'
-import {MessageDataEnum, MessageDataObject, MessageEventParams} from './models/messaging.model'
+import {onMessage, sendTabMessage} from './data/messaging.data'
+import {MessageData, MessageDataEnum, MessageDataObject, MessageEventParams} from './models/messaging.model'
 import {settings} from './settings'
 
 // Background Init
@@ -33,6 +33,15 @@ import {settings} from './settings'
 
       // Active page action and update badge when a message is heard
       chrome.browserAction.enable()
+
+      const messageData = {
+        backgroundData: {
+          from: '‍🍉 Background: tabs.onActivated',
+          tabId: tab.id
+        } as MessageData
+      }
+
+      sendTabMessage(messageData)
 
       getSyncedData(MessageDataEnum.contentscriptData, (messageData: MessageDataObject) => {
         const matches = messageData && messageData.contentscriptData && messageData.contentscriptData.matches
