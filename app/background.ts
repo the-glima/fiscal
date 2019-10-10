@@ -18,8 +18,6 @@ import {settings} from './settings'
   const updateBadge = (badgeCount: any, badgeBgColor = settings.badgeBgColor): void => {
     badgeCount = badgeCount !== null || badgeCount !== undefined ? badgeCount : ''
 
-    console.log('%c⧭', 'color: #aa00ff', `updateBadge: ${JSON.stringify(badgeCount)}`)
-
     chrome.browserAction.setBadgeText({text: `${badgeCount}`})
     chrome.browserAction.setBadgeBackgroundColor({color: badgeBgColor})
   }
