@@ -1,8 +1,18 @@
+enum MessageDataActionEnum {
+  domRepaint = 'DOMRePaint',
+  updateBadge = 'UpdateBadge'
+}
+
+type MessageDataActions = MessageDataActionEnum.domRepaint | MessageDataActionEnum.updateBadge
+
 interface MessageData {
   from: string
-  searchTerm?: string | null
-  tabId?: number
-  matches?: any[]
+  action?: MessageDataActions
+  data: {
+    matches: any[]
+    searchTerm?: string
+    tabId: number
+  }
 }
 
 enum MessageDataEnum {
@@ -25,6 +35,7 @@ interface MessageEventParams {
 
 export {
   MessageData, //
+  MessageDataActionEnum,
   MessageDataEnum,
   MessageDataObject,
   MessageEventParams

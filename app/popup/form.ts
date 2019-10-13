@@ -1,7 +1,8 @@
 import {setSyncedData} from '../data/get-set.data'
 import {sendTabMessage} from '../data/messaging.data'
-import {MessageData, MessageDataObject} from '../models/messaging.model'
+import {MessageData, MessageDataObject} from '../models/message-data.model'
 import {PopupDataEnum} from '../models/popup.model'
+import {getPropertySafe} from '../utils'
 
 const onSubmit = (event: any) => {
   event.preventDefault()
@@ -11,7 +12,10 @@ const onSubmit = (event: any) => {
   const messageData = {
     popupData: {
       from: '‍🍿 Popup: onSubmit',
-      searchTerm: searchTerm.value
+      action: 'DOMRePaint',
+      data: {
+        searchTerm: searchTerm.value
+      }
     } as MessageData
   }
 
@@ -21,7 +25,7 @@ const onSubmit = (event: any) => {
 }
 
 const updateForm = (messageData: MessageDataObject) => {
-  const searchTerm = messageData && messageData.popupData && messageData.popupData.searchTerm
+  const searchTerm = getPropertySafe(() => messageData.popupData.data.searchTerm)
 
   if (!searchTerm) return
 

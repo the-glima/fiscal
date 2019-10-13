@@ -1,7 +1,7 @@
-import {AddStyleParams, ItemFoundEnum} from '../models/contentscript.model'
+import {DOMAddStyleParams, ItemFoundEnum} from '../models/contentscript.model'
 import {settings} from '../settings'
 
-const addStyle = ({contentMatches, targetElement = 'span', style = settings.styles}: AddStyleParams) => {
+const DOMAddStyle = ({contentMatches, targetElement = 'span', style = settings.styles}: DOMAddStyleParams) => {
   if (!contentMatches) return
 
   contentMatches.forEach((el: Element) =>
@@ -12,7 +12,7 @@ const addStyle = ({contentMatches, targetElement = 'span', style = settings.styl
   )
 }
 
-const removeStyle = (elementClass = ItemFoundEnum.class) => {
+const DOMRemoveStyle = (elementClass = ItemFoundEnum.class) => {
   const styledElements = document.querySelectorAll(`.${elementClass}`)
 
   if (!styledElements.length) return
@@ -20,4 +20,4 @@ const removeStyle = (elementClass = ItemFoundEnum.class) => {
   styledElements.forEach((el: any) => el.removeAttribute('style'))
 }
 
-export {addStyle, removeStyle}
+export {DOMAddStyle, DOMRemoveStyle}

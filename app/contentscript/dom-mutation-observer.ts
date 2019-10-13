@@ -1,4 +1,4 @@
-export const mutationObserver = (callback: any, cbParams: any) => {
+export const DOMutationObserver = (callback: any, cbParams: any) => {
   const MutationObserver: any =
     window[<any>'MutationObserver'] || //
     window[<any>'WebKitMutationObserver'] ||
