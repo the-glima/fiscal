@@ -7,12 +7,12 @@ type MessageDataActions = MessageDataActionEnum.domRepaint | MessageDataActionEn
 
 interface MessageData {
   from: string
-  action?: MessageDataActions
   data: {
     matches: any[]
     searchTerm?: string
     tabId: number
   }
+  action?: MessageDataActions
 }
 
 enum MessageDataEnum {
@@ -31,6 +31,7 @@ interface MessageEventParams {
   message: MessageDataObject
   sender: chrome.runtime.MessageSender
   sendResponse: (response?: any) => void
+  tabId?: number
 }
 
 export {

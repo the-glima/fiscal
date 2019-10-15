@@ -2,7 +2,7 @@ import {MessageDataActionEnum, MessageDataObject} from '../models/message-data.m
 import {settings} from '../settings'
 import {getPropertySafe} from '../utils'
 
-export const updateBadge = (messageData: MessageDataObject, badgeBgColor = settings.badgeBgColor, badgeCount?: any) => {
+export const updateBadge = (messageData: MessageDataObject, badgeBgColor = settings.background.badge.bgColor, badgeCount?: any) => {
   const matches = getPropertySafe(() => messageData.contentscriptData.data.matches)
   const action = getPropertySafe(() => messageData.contentscriptData.action)
 

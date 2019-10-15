@@ -1,7 +1,7 @@
 import {DOMAddStyleParams, ItemFoundEnum} from '../models/contentscript.model'
 import {settings} from '../settings'
 
-const DOMAddStyle = ({contentMatches, targetElement = 'span', style = settings.styles}: DOMAddStyleParams) => {
+const DOMAddStyle = ({contentMatches, targetElement = 'span', style = settings.contentScript.styles}: DOMAddStyleParams) => {
   if (!contentMatches) return
 
   contentMatches.forEach((el: Element) =>

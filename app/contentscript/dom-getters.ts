@@ -1,11 +1,11 @@
 import {settings} from '../settings'
 
-const DOMGetCodeLine = (lineClasses = settings.elements.codeLine): any =>
+const DOMGetCodeLine = (lineClasses = settings.contentScript.elements.codeLine): any =>
   lineClasses.reduce((a: any, c: any) => {
     return [...a, ...document.querySelectorAll(c)]
   }, [])
 
-const DOMGetContainer = (containerClasses = settings.elements.container): any => {
+const DOMGetContainer = (containerClasses = settings.contentScript.elements.container): any => {
   const result = containerClasses
     .map((container: any) => {
       const el = document.getElementsByClassName(container)[0]

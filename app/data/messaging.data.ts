@@ -1,3 +1,5 @@
+import {MessageData} from 'app/models/message-data.model'
+
 const onMessage = (callback: Function) => {
   chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     callback({message, sender, sendResponse})
@@ -10,7 +12,10 @@ const sendMessage = (data: object) => {
 
 const sendTabMessage = (data: object) => {
   chrome.tabs.query({active: true, currentWindow: true}, tabs => {
-    chrome.tabs.sendMessage(tabs[0].id as number, data)
+    chrome.tabs.sendMessage(tabs[0].id as number, {
+      ...data,
+      tabId: tabs[0].id
+    })
   })
 }
 
