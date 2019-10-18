@@ -1,4 +1,6 @@
-export const getRegex = (string: any): RegExp | null => {
+export const getRegex = (string: string): RegExp | null => {
+  if (!string || typeof string !== 'string') return null
+
   const searchValues = string
     .split(',')
     .map((term: string) => term.toString())

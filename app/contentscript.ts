@@ -1,18 +1,13 @@
-import {onReady} from './contentscript/on-ready'
-import {paint} from './contentscript/paint'
+import {DOMOnReady} from './contentscript/dom-on-ready'
+import {DOMRepaint} from './contentscript/dom-repaint'
 import {onMessage} from './data/messaging.data'
-import {MessageEventParams} from './models/messaging.model'
-
-// ContentScript Init
+import {MessageEventParams} from './models/message-data.model'
 ;(() => {
-  // Azure or GiHub PR pages only
   console.log('%c⧭', 'color: #d90000', 'CONTENTSCRIPT INIT')
 
-  // Paint and fires scroll event listener when it's ready
-  window.requestAnimationFrame(onReady)
+  window.requestAnimationFrame(DOMOnReady)
 
-  // When receiving a message from popup re-paint
   onMessage((params: MessageEventParams) => {
-    paint()
+    DOMRepaint()
   })
 })()

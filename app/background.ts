@@ -1,65 +1,74 @@
+import {toggleBrowserAction} from './background/toggle-browser-action.background'
+import {updateBadge} from './background/update-badge.background'
 import {checkPage} from './contentscript/check-page'
 import {getSyncedData} from './data/get-set.data'
-import {onMessage, sendTabMessage} from './data/messaging.data'
-import {MessageData, MessageDataEnum, MessageDataObject, MessageEventParams} from './models/messaging.model'
-import {settings} from './settings'
+import {onMessage, sendMessage} from './data/messaging.data'
+import {MessageData, MessageDataEnum, MessageDataObject, MessageEventParams} from './models/message-data.model'
 
-// Background Init
 ;(() => {
-  console.log('%c⧭', 'color: #917399', 'BACKGROUND INIT')
+  console.log('%c⧭', 'color: #917399', 'BACKGROUND')
 
-  chrome.browserAction.enable()
-
-  const disableBrowserAction = (): void => {
-    chrome.browserAction.disable()
-    chrome.browserAction.setBadgeText({text: ''})
+  const updateBadgeWithSyncData = () => {
+    getSyncedData(MessageDataEnum.contentscriptData, (messageData: MessageDataObject) => {
+      updateBadge(messageData)
+    })
   }
 
-  const updateBadge = (badgeCount: any, badgeBgColor = settings.badgeBgColor): void => {
-    badgeCount = badgeCount !== null || badgeCount !== undefined ? badgeCount : ''
+  const run = (tab: any) => {
+    if (!checkPage(tab.url as string)) {
+      toggleBrowserAction(false)
+      return
+    }
 
-    console.log('%c⧭', 'color: #aa00ff', `updateBadge: ${JSON.stringify(badgeCount)}`)
+    toggleBrowserAction(true)
 
-    chrome.browserAction.setBadgeText({text: `${badgeCount}`})
-    chrome.browserAction.setBadgeBackgroundColor({color: badgeBgColor})
+    updateBadgeWithSyncData()
+
+    const messageData = {
+      backgroundData: {
+        from: '‍🍉 Background: tabs.onActivated',
+        action: 'DOMRePaint',
+        data: {
+          tabId: tab.tabId
+        }
+      } as MessageData
+    }
+
+    sendMessage(messageData)
   }
 
-  chrome.tabs.onActivated.addListener(info => {
-    chrome.tabs.get(info.tabId, (tab: any) => {
-      if (!checkPage(tab.url)) {
-        disableBrowserAction()
-        return
+  const onInit = () => {
+    chrome.tabs.query({active: true, currentWindow: true}, (tabs: any) => {
+      if (!tabs && !tabs.length) return
+
+      if (!checkPage(tabs[0].url as string)) {
+        toggleBrowserAction(false)
       }
+    })
 
-      // Active page action and update badge when a message is heard
-      chrome.browserAction.enable()
+    updateBadgeWithSyncData()
 
-      const messageData = {
-        backgroundData: {
-          from: '‍🍉 Background: tabs.onActivated',
-          tabId: tab.id
-        } as MessageData
-      }
+    onMessage((params: MessageEventParams) => {
+      const {message} = params
 
-      sendTabMessage(messageData)
+      updateBadge(message)
+    })
+  }
 
-      getSyncedData(MessageDataEnum.contentscriptData, (messageData: MessageDataObject) => {
-        const matches = messageData && messageData.contentscriptData && messageData.contentscriptData.matches
-
-        if (!matches) return
-
-        updateBadge(matches.length)
+  const onSwitchingUpdatingTab = () => {
+    chrome.tabs.onActivated.addListener(info => {
+      chrome.tabs.get(info.tabId, (tab: any) => {
+        run(tab)
       })
 
-      // When receiving a message from contentscript with updated matches
-      onMessage((params: MessageEventParams) => {
-        const {message} = params
-        const matches = message && message.contentscriptData && message.contentscriptData.matches
+      chrome.tabs.onUpdated.addListener((_, changeInfo, tab) => {
+        if (changeInfo.status !== 'complete') return
 
-        if (!matches) return
-
-        updateBadge(matches.length)
+        run(tab)
       })
     })
-  })
+  }
+
+  onInit()
+  onSwitchingUpdatingTab()
 })()
