@@ -10,11 +10,14 @@
     "target": "es6",
     "esModuleInterop": true
   },
-  "include": [
-    "app/*"
-  ],
   "types" : [
     "jest",
     "chrome"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "test"
   ]
+
 }

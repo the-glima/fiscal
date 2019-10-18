@@ -23,8 +23,8 @@ export const settings = {
   },
   background: {
     urlRegex: [
-      '(pullrequest/.*?_a=files)', //
-      '(pull/.*files)'
+      '(pullRequest/.*)', //
+      '(pull/.*)'
     ],
     badge: {
       bgColor: '#e41313',

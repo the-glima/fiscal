@@ -1,5 +1,3 @@
-import '@testing-library/jest-dom/extend-expect'
-
 import {findMatch} from '../../app/contentscript/find-match'
 
 describe('Content Script: Find Match Element', () => {

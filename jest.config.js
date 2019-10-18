@@ -7,5 +7,12 @@ module.exports = {
   transform: {
     "^.+\\.tsx?$": "ts-jest"
   },
-  verbose: true
+  verbose: true,
+  globals: {
+    'ts-jest': {
+      diagnostics: {
+        ignoreCodes: [7053, 2339]
+      }
+    }
+  }
 }

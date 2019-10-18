@@ -1,5 +1,3 @@
-import {MessageData} from 'app/models/message-data.model'
-
 const onMessage = (callback: Function) => {
   chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     callback({message, sender, sendResponse})

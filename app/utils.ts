@@ -1,7 +1,1 @@
-export const getPropertySafe = (fn: Function, defaultVal?: any) => {
-  try {
-    return fn()
-  } catch {
-    return defaultVal
-  }
-}
+export const getPropertySafe = (fn: Function, defaultVal?: any) => (fn() === undefined ? defaultVal : fn())
