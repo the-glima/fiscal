@@ -7,9 +7,4 @@ describe('Popup: Get Regex', () => {
 
     expect(getRegex(string)).toStrictEqual(result)
   })
-
-  test('should return null if nothing is passed', async () => {
-    expect(getRegex(null)).toBeNull()
-    expect(getRegex(undefined)).toBeNull()
-  })
 })

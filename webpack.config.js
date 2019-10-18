@@ -18,7 +18,7 @@ const config = {
     ],
     popup: [
       path.resolve(__dirname + '/app/popup.ts'),
-      path.resolve(__dirname + '/assets/scss/main.scss')
+      path.resolve(__dirname + '/app/assets/scss/main.scss')
     ]
   },
   output: {
@@ -64,7 +64,7 @@ const config = {
     new ImageMinPlugin({ test: /\.(jpg|jpeg|png|gif|svg)$/i }),
     new CopyWebpackPlugin([
       {
-        from: path.resolve(__dirname, 'assets', 'images'),
+        from: path.resolve(__dirname, 'app', 'assets', 'images'),
         to: path.resolve(__dirname, 'dist', 'images'),
         toType: 'dir',
       },

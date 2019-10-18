@@ -1,11 +1,11 @@
 module.exports = {
   collectCoverage: true,
   collectCoverageFrom: [
-    "src/**/*.ts",
+    "app/**/*.ts",
   ],
   coverageDirectory: 'test/static/coverage',
   transform: {
     "^.+\\.tsx?$": "ts-jest"
-  }, 
+  },
   verbose: true
 }
