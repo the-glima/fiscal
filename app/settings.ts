@@ -3,7 +3,7 @@ export const settings = {
     styles: `
       color: white !important;
       border-top: 1px solid #953131 !important;
-      background-color: #ef4d4d !important;
+      background-color: rgb(239, 77, 77) !important;
     `,
     elements: {
       container: ['summaryContainer', 'diff-view'],

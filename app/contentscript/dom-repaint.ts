@@ -4,8 +4,8 @@ import {MessageData, MessageDataActionEnum, MessageDataEnum, MessageDataObject} 
 import {getRegex} from '../popup/get-regex'
 
 import {getPropertySafe} from '../utils'
-import {DOMAddStyle, DOMRemoveStyle} from './dom-add-style'
 import * as getters from './dom-getters'
+import {DOMAddStyle, DOMRemoveStyle} from './dom-handle-style'
 import {findMatch} from './find-match'
 
 export const DOMRepaint = (container = getters.DOMGetContainer(), codeLine = getters.DOMGetCodeLine()) => {

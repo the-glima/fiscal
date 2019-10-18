@@ -1,6 +1,7 @@
 interface DOMAddStyleParams {
   contentMatches: Element[] | undefined
   targetElement?: string
+  className?: string
   style?: string
 }
 
