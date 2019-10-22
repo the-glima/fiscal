@@ -5,7 +5,7 @@ import {getSyncedData} from './data/get-set.data'
 import {onMessage, sendMessage} from './data/messaging.data'
 import {MessageData, MessageDataEnum, MessageDataObject, MessageEventParams} from './models/message-data.model'
 
-;(() => {
+(() => {
   console.log('%c⧭', 'color: #917399', 'BACKGROUND')
 
   const updateBadgeWithSyncData = () => {

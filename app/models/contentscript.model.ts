@@ -1,5 +1,5 @@
 interface DOMAddStyleParams {
-  contentMatches: Element[] | undefined
+  contentMatches: HTMLSpanElement[] | undefined
   targetElement?: string
   className?: string
   style?: string

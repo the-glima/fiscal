@@ -1,8 +1,8 @@
 import {settings} from '../settings'
 
 const DOMGetCodeLine = (lineClasses = settings.contentScript.elements.codeLine): any =>
-  lineClasses.reduce((a: any, c: any) => {
-    return [...a, ...document.querySelectorAll(c)]
+  lineClasses.reduce((acc: any, cur: any) => {
+    return [...acc, ...document.querySelectorAll(cur)]
   }, [])
 
 const DOMGetContainer = (containerClasses = settings.contentScript.elements.container): any => {

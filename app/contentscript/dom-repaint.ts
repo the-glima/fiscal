@@ -15,13 +15,17 @@ export const DOMRepaint = (container = getters.DOMGetContainer(), codeLine = get
     const searchTerm = getPropertySafe(() => messageData.popupData.data.searchTerm)
     const action = getPropertySafe(() => messageData.popupData.action)
 
-    if (action !== MessageDataActionEnum.domRepaint && !searchTerm) return
+    if (!searchTerm || action !== MessageDataActionEnum.domRepaint) return
 
     const regex = getRegex(searchTerm)
 
     if (!regex) return
 
     const matchesFound = findMatch(regex, codeLine)
+
+    console.log('=STARTLOG <>================================<> STARTLOG=');
+    console.log(matchesFound);
+    console.log('=ENDLOG <>================================<> ENDLOG=');
 
     const messageDataMatches = {
       contentscriptData: {

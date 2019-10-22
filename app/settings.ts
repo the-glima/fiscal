@@ -23,7 +23,7 @@ export const settings = {
   },
   background: {
     urlRegex: [
-      '(pullRequest/.*)', //
+      '(pullrequest/.*)', //
       '(pull/.*)'
     ],
     badge: {
