@@ -6,5 +6,5 @@ export const getRegex = (string: string): RegExp | null => {
     .map((term: string) => term.toString())
     .join('|')
 
-  return searchValues ? new RegExp(searchValues) : null
+  return searchValues ? new RegExp(searchValues, 'm') : null
 }

@@ -23,10 +23,6 @@ export const DOMRepaint = (container = getters.DOMGetContainer(), codeLine = get
 
     const matchesFound = findMatch(regex, codeLine)
 
-    console.log('=STARTLOG <>================================<> STARTLOG=');
-    console.log(matchesFound);
-    console.log('=ENDLOG <>================================<> ENDLOG=');
-
     const messageDataMatches = {
       contentscriptData: {
         from: '‍🚀 Contentscript: onReady',

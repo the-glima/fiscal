@@ -1,17 +1,31 @@
 export const settings = {
   contentScript: {
-    styles: `
-      color: white !important;
-      border-top: 1px solid #953131 !important;
-      background-color: rgb(239, 77, 77) !important;
-    `,
+    itemFoundProps: {
+      element: {
+        className: 'FiscalCS-item-found',
+        style: `
+          position: relative !important;
+          overflow: visible !important;
+          border-bottom: 2px solid rgb(239, 77, 77) !important;
+        `,
+      },
+      icon: {
+        className: 'FiscalCS-item-icon',
+        style: `
+        display: inline-block !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: -8px !important;
+        `,
+        content: '👮‍♂️'
+      }
+    },
     elements: {
       container: ['summaryContainer', 'diff-view'],
       codeLine: [
-        '.vc-diff-viewer .code-line', //
-        '.view-lines .view-line',
-        '.blob-code-marker',
-        '.blob-code'
+        '.code-line', //
+        '.view-line',
+        '.blob-code-inner'
       ]
     },
     mutationObserver: {

@@ -1,28 +1,37 @@
-import {DOMAddStyleParams, ItemFoundEnum} from '../models/contentscript.model'
+import {DOMAddStyleParams} from '../models/contentscript.model'
 import {settings} from '../settings'
 
 const DOMAddStyle = ({
   contentMatches, 
-  targetElement = 'span', 
-  className = ItemFoundEnum.class, 
-  style = settings.contentScript.styles
+  itemFoundProps = settings.contentScript.itemFoundProps
 }: DOMAddStyleParams) => {
   if (!contentMatches) return
 
-  contentMatches.forEach((el: Element) =>
-    el.querySelectorAll(targetElement).forEach((child: any) => {
-      child.className = className
-      child.style.cssText = style
-    })
-  )
+  contentMatches.forEach((el: HTMLElement) => {
+    el.className = itemFoundProps.element.className
+    el.style.cssText = itemFoundProps.element.style
+
+    let elIcon = document.createElement('span')
+    elIcon.innerText = itemFoundProps.icon.content as string
+    elIcon.className = itemFoundProps.icon.className
+    elIcon.style.cssText = itemFoundProps.icon.style
+
+    el.appendChild(elIcon)
+  })
 }
 
-const DOMRemoveStyle = (elementClass = ItemFoundEnum.class) => {
-  const styledElements = document.querySelectorAll(`.${elementClass}`)
+const DOMRemoveStyle = (
+  elementClass = settings.contentScript.itemFoundProps.element.className,
+  iconElementClass = settings.contentScript.itemFoundProps.icon.className,
+  ) => {
+  const foundStylesElements = document.querySelectorAll(`.${elementClass}`)
 
-  if (!styledElements.length) return
+  if (!foundStylesElements.length) return
 
-  styledElements.forEach((el: any) => el.removeAttribute('style'))
+  foundStylesElements.forEach((el: any) => {
+    el.removeAttribute('style')
+    el.removeChild(document.getElementsByClassName(iconElementClass))
+  })
 }
 
 export {DOMAddStyle, DOMRemoveStyle}

@@ -1,12 +1,17 @@
 interface DOMAddStyleParams {
-  contentMatches: HTMLSpanElement[] | undefined
+  contentMatches: HTMLElement[] | undefined
   targetElement?: string
   className?: string
-  style?: string
+  itemFoundProps?: {
+    element: ItemFoundProps;
+    icon: ItemFoundProps;
+  }
 }
 
-enum ItemFoundEnum {
-  class = 'FiscalCS-item-found'
+interface ItemFoundProps {
+  className: string
+  style: string
+  content?: string
 }
 
-export {DOMAddStyleParams, ItemFoundEnum}
+export {DOMAddStyleParams}
